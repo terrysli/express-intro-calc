@@ -30,10 +30,10 @@ app.get("/mean", function (req, res) {
     operation: "mean",
     value: mean
   });
-})
+});
 
 /** Finds median of nums in qs: returns {operation: "median", result } */
-app.get("/median", function (req, res){
+app.get("/median", function (req, res) {
   const strNums = req.query.nums;
 
   // Throw 400 if no nums passed
@@ -51,7 +51,7 @@ app.get("/median", function (req, res){
 });
 
 /** Finds mode of nums in qs: returns {operation: "mean", result } */
-app.get("/mode", function (req, res){
+app.get("/mode", function (req, res) {
   const strNums = req.query.nums;
 
   // Throw 400 if no nums passed
