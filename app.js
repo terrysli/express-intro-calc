@@ -23,7 +23,7 @@ app.get("/mean", function (req, res) {
     throw new BadRequestError();
   }
 
-  const nums = convertStrNums(nums.split(","));
+  const nums = convertStrNums(strNums.split(","));
   const mean = findMean(nums);
 
   return res.json({
@@ -34,24 +34,19 @@ app.get("/mean", function (req, res) {
 
 /** Finds median of nums in qs: returns {operation: "median", result } */
 app.get("/median", function (req, res){
-  const nums = req.query.nums;
+  const strNums = req.query.nums;
 
   // Throw 400 if no nums passed
-  if (nums === undefined || nums === '') {
+  if (strNums === undefined || strNums === '') {
     throw new BadRequestError();
   }
 
-  const numList = nums.split(",").map(n => Number(n));
+  const nums = convertStrNums(strNums.split(","));
+  const median = findMedian(nums);
 
-  // Throw 400 Bad Request if invalid number passed
-  if (numList.includes(NaN)) {
-    throw new BadRequestError();
-  }
-
-  const mean = findMean(numList);
   return res.json({
-    operation: "mean",
-    value: mean
+    operation: "median",
+    value: median
   });
 });
 
