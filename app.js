@@ -15,6 +15,8 @@ const MISSING = "Expected key `nums` with comma-separated list of numbers.";
 
 
 /** Finds mean of nums in qs: returns {operation: "mean", result } */
+// specify that you need to add query params that are only numbers
+// include example input/output, but particularly output.
 app.get("/mean", function (req, res) {
   const strNums = req.query.nums;
 
@@ -38,7 +40,7 @@ app.get("/median", function (req, res) {
 
   // Throw 400 if no nums passed
   if (strNums === undefined || strNums === '') {
-    throw new BadRequestError();
+    throw new BadRequestError("nums query params are required");
   }
 
   const nums = convertStrNums(strNums.split(","));
