@@ -51,7 +51,22 @@ app.get("/median", function (req, res){
 });
 
 /** Finds mode of nums in qs: returns {operation: "mean", result } */
+app.get("/mode", function (req, res){
+  const strNums = req.query.nums;
 
+  // Throw 400 if no nums passed
+  if (strNums === undefined || strNums === '') {
+    throw new BadRequestError();
+  }
+
+  const nums = convertStrNums(strNums.split(","));
+  const mode = findMode(nums);
+
+  return res.json({
+    operation: "mode",
+    value: mode
+  });
+});
 
 /** 404 handler: matches unmatched routes; raises NotFoundError. */
 app.use(function (req, res) {
