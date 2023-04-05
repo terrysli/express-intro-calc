@@ -10,6 +10,7 @@ function convertStrNums(strNums) {
   const nums = strNums.map(n => Number(n));
 
   // Throw 400 Bad Request if invalid number passed
+  // could fail fast instead
   if (nums.includes(NaN)) {
     throw new BadRequestError();
   }
